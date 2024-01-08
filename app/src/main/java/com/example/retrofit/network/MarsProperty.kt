@@ -15,19 +15,21 @@
  *
  */
 
-package com.example.retrofit
+package com.example.retrofit.network
 
-import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import android.os.Parcelable
+import com.squareup.moshi.Json
+import kotlinx.parcelize.Parcelize
 
-class MainActivity : AppCompatActivity() {
 
-    /**
-     * Our MainActivity is only responsible for setting the content view that contains the
-     * Navigation Host.
-     */
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-    }
-}
+@Parcelize
+data class MarsProperty(
+    @Json(name = "id")
+    val id: String,
+    @Json(name = "img_src")
+    val imageScrUrl: String,
+    val type: String,
+    val price: Double,
+    val isRental: Boolean = type == "rent"
+) : Parcelable
+
